@@ -1,8 +1,8 @@
-import { createSlider } from './createSlider';
+import {SliderCreator} from './createSlider';
 
 export class Carousel {
   constructor(event, container) {
-    new createSlider();
+    new SliderCreator();
     this.event = event;
     this.container = container;
   }
