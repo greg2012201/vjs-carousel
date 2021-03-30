@@ -2,6 +2,7 @@ export class SliderCreator {
   constructor() {
     this.fragment = new DocumentFragment();
     this.createElements();
+    /* this.placeImage(); */
     this.render();
   }
 
@@ -36,6 +37,7 @@ export class SliderCreator {
       imageContainer.style.gridColumn = '2/3';
     });
   }
+
   render() {
     const mask = this.fragment.querySelector('div');
     const imageContainer = this.fragment.querySelector('img');
