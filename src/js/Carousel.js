@@ -1,10 +1,12 @@
-import {SliderCreator} from './createSlider';
+import {SliderCreator} from './SliderCreator';
 
 export class Carousel {
   constructor(event, container) {
-    new SliderCreator();
-    this.event = event;
     this.container = container;
+    this.images = [...this.container.querySelectorAll('img')];
+    new SliderCreator(this.images.length);
+    this.event = event;
+    /* this.placeImage(); */
   }
 
   getImages() {
@@ -13,6 +15,15 @@ export class Carousel {
   getClickedImage() {
     return this.event.target;
   }
+  /*  placeImage() {
+    const img = this.fragment.querySelector('img');
+
+    console.log(img);
+    this.images.forEach((element) => {
+      const path = element.getAttribute('src');
+      img.setAttribute('src', path);
+    });
+  } */
   openSlider() {}
   closeSlider() {}
   pagination() {}
