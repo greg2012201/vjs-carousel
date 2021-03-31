@@ -1,8 +1,11 @@
+import {SliderStyle} from './SliderStyle';
+
 export class SliderCreator {
   constructor(numberOfImages) {
     this.fragment = new DocumentFragment();
     console.log(numberOfImages);
     this.numberOfImages = parseInt(numberOfImages, 10);
+    this.sliderStyle = new SliderStyle();
     this.createElements();
     this.render();
   }
@@ -11,11 +14,11 @@ export class SliderCreator {
     const sliderContainer = document.createElement('div');
     const imageContainer = document.createElement('div');
     const imagesFields = this.createImagesFields();
-
+    const paginationButtons = this.createPaginationButtons();
     this.append([imagesFields], imageContainer);
-    this.append([imageContainer], sliderContainer);
+    this.append([imageContainer, paginationButtons], sliderContainer);
     this.append([sliderContainer], this.fragment);
-    this.elemntsStyle([{sliderContainer, imageContainer, imagesFields}]);
+    this.sliderStyle.setElemntsStyle([{sliderContainer, imageContainer, imagesFields, paginationButtons}]);
   }
 
   createImagesFields() {
@@ -34,33 +37,14 @@ export class SliderCreator {
       parent.appendChild(child);
     });
   }
-  elemntsStyle(elements) {
-    elements.map(({sliderContainer, imageContainer, imagesFields}) => {
-      imageContainer.style.display = 'flex';
-      imageContainer.style.overflow = 'hidden';
-      imageContainer.style.height = '70%';
-      imageContainer.style.width = '100%';
-      imageContainer.style.gridRow = '1/2';
-      imageContainer.style.gridColumn = '2/3';
-
-      sliderContainer.style.position = 'fixed';
-      sliderContainer.style.display = 'grid';
-      sliderContainer.style.gridTemplateRows = '90% 1fr';
-      sliderContainer.style.gridTemplateColumns = '15% 70% 15%';
-      sliderContainer.style.alignItems = 'center';
-      sliderContainer.style.left = '0';
-      sliderContainer.style.top = '0';
-      sliderContainer.style.height = '100vh';
-      sliderContainer.style.width = '100%';
-      sliderContainer.style.backgroundColor = 'rgba(0,0,0,0.20)';
-
-      imagesFields.map((img) => {
-        img.style.height = '100%';
-        img.style.width = '100%';
-        img.style.flexShrink = '0';
-        img.style.backgroundColor = 'green';
-      });
-    });
+  createPaginationButtons() {
+    const right = document.createElement('div');
+    const left = document.createElement('div');
+    const arrowRight = document.createElement('span');
+    const arrowLeft = document.createElement('span');
+    this.append([arrowRight], right);
+    this.append([arrowLeft], left);
+    return [right, left];
   }
 
   render() {
