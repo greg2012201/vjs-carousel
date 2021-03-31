@@ -17,6 +17,7 @@ export class SliderCreator {
     const paginationButtons = this.createPaginationButtons();
     const output = [{sliderContainer, imageContainer, imagesFields, paginationButtons}];
     this.createElementsStructure(output);
+    this.addClasses(output);
     this.sliderStyle.setElemntsStyle(output);
   }
   createElementsStructure(elements) {
@@ -24,6 +25,16 @@ export class SliderCreator {
       this.append([imagesFields], imageContainer);
       this.append([imageContainer, paginationButtons], sliderContainer);
       this.append([sliderContainer], this.fragment);
+    });
+  }
+  addClasses(elements) {
+    elements.flat().map(({sliderContainer, imageContainer, imagesFields, paginationButtons}) => {
+      sliderContainer.classList.add('slider-container');
+      imageContainer.classList.add('image-container');
+      imagesFields.map((field) => field.classList.add('images-fields'));
+      const [leftButton, rightButton] = paginationButtons;
+      leftButton.classList.add('pagination-button', 'left');
+      rightButton.classList.add('pagination-button', 'right');
     });
   }
   createImagesFields() {
@@ -45,7 +56,7 @@ export class SliderCreator {
   createPaginationButtons() {
     let buttons = [];
     for (let i = 0; i < 2; i++) {
-      const button = document.createElement('div');
+      const button = document.createElement('button');
       const arrow = document.createElement('span');
 
       this.append([arrow], button);
