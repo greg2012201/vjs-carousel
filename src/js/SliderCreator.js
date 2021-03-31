@@ -43,13 +43,16 @@ export class SliderCreator {
     });
   }
   createPaginationButtons() {
-    const right = document.createElement('div');
-    const left = document.createElement('div');
-    const arrowRight = document.createElement('span');
-    const arrowLeft = document.createElement('span');
-    this.append([arrowRight], right);
-    this.append([arrowLeft], left);
-    return [right, left];
+    let buttons = [];
+    for (let i = 0; i < 2; i++) {
+      const button = document.createElement('div');
+      const arrow = document.createElement('span');
+
+      this.append([arrow], button);
+
+      buttons.push(button);
+    }
+    return buttons;
   }
 
   render() {
