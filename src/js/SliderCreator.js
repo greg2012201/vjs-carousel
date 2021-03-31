@@ -15,12 +15,17 @@ export class SliderCreator {
     const imageContainer = document.createElement('div');
     const imagesFields = this.createImagesFields();
     const paginationButtons = this.createPaginationButtons();
-    this.append([imagesFields], imageContainer);
-    this.append([imageContainer, paginationButtons], sliderContainer);
-    this.append([sliderContainer], this.fragment);
-    this.sliderStyle.setElemntsStyle([{sliderContainer, imageContainer, imagesFields, paginationButtons}]);
+    const output = [{sliderContainer, imageContainer, imagesFields, paginationButtons}];
+    this.createElementsStructure(output);
+    this.sliderStyle.setElemntsStyle(output);
   }
-
+  createElementsStructure(elements) {
+    elements.flat().map(({sliderContainer, imageContainer, imagesFields, paginationButtons}) => {
+      this.append([imagesFields], imageContainer);
+      this.append([imageContainer, paginationButtons], sliderContainer);
+      this.append([sliderContainer], this.fragment);
+    });
+  }
   createImagesFields() {
     let output = [];
 
