@@ -1,10 +1,7 @@
-import {SliderStyle} from './SliderStyle';
-
 export class SliderCreator {
   constructor(numberOfImages) {
     this.fragment = new DocumentFragment();
     this.numberOfImages = parseInt(numberOfImages, 10);
-    this.sliderStyle = new SliderStyle();
     this.createElements();
     this.render();
   }
@@ -28,7 +25,6 @@ export class SliderCreator {
     ];
     this.createElementsStructure(output);
     this.addClasses(output);
-    this.sliderStyle.setElemntsStyle(output);
   }
   createElementsStructure(elements) {
     elements
