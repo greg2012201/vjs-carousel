@@ -34,8 +34,8 @@ export class SliderCreator {
     this.imageContainer.classList.add('image-container');
     this.imagesFields.map((field) => field.classList.add('images-fields'));
     const [leftButton, rightButton] = this.paginationButtons;
-    leftButton.classList.add('pagination-button', 'left');
-    rightButton.classList.add('pagination-button', 'right');
+    leftButton.classList.add('left');
+    rightButton.classList.add('right');
     this.navigationBar.classList.add('navigation-bar');
     this.closeButton.classList.add('close-button');
   }
