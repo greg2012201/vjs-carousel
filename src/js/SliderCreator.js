@@ -7,68 +7,37 @@ export class SliderCreator {
   }
 
   createElements() {
-    const sliderContainer = document.createElement('div');
-    const imageContainer = document.createElement('div');
-    const closeButton = document.createElement('button');
-    const navigationBar = document.createElement('div');
-    const imagesFields = this.createImagesFields();
-    const paginationButtons = this.createPaginationButtons();
-    const output = [
-      {
-        sliderContainer,
-        imageContainer,
-        imagesFields,
-        paginationButtons,
-        navigationBar,
-        closeButton,
-      },
-    ];
-    this.createElementsStructure(output);
-    this.addClasses(output);
+    this.sliderContainer = document.createElement('div');
+    this.imageContainer = document.createElement('div');
+    this.closeButton = document.createElement('button');
+    this.navigationBar = document.createElement('div');
+    this.imagesFields = this.createImagesFields();
+    this.paginationButtons = this.createPaginationButtons();
+    this.createElementsStructure();
+    this.addClasses();
   }
-  createElementsStructure(elements) {
-    elements
-      .flat()
-      .map(
-        ({
-          sliderContainer,
-          imageContainer,
-          imagesFields,
-          paginationButtons,
-          navigationBar,
-          closeButton,
-        }) => {
-          this.append([imagesFields], imageContainer);
-          this.append(
-            [imageContainer, paginationButtons, navigationBar, closeButton],
-            sliderContainer
-          );
-          this.append([sliderContainer], this.fragment);
-        }
-      );
+  createElementsStructure() {
+    this.append([this.imagesFields], this.imageContainer);
+    this.append(
+      [
+        this.imageContainer,
+        this.paginationButtons,
+        this.navigationBar,
+        this.closeButton,
+      ],
+      this.sliderContainer
+    );
+    this.append([this.sliderContainer], this.fragment);
   }
-  addClasses(elements) {
-    elements
-      .flat()
-      .map(
-        ({
-          sliderContainer,
-          imageContainer,
-          imagesFields,
-          paginationButtons,
-          navigationBar,
-          closeButton,
-        }) => {
-          sliderContainer.classList.add('slider-container');
-          imageContainer.classList.add('image-container');
-          imagesFields.map((field) => field.classList.add('images-fields'));
-          const [leftButton, rightButton] = paginationButtons;
-          leftButton.classList.add('pagination-button', 'left');
-          rightButton.classList.add('pagination-button', 'right');
-          navigationBar.classList.add('navigation-bar');
-          closeButton.classList.add('close-button');
-        }
-      );
+  addClasses() {
+    this.sliderContainer.classList.add('slider-container');
+    this.imageContainer.classList.add('image-container');
+    this.imagesFields.map((field) => field.classList.add('images-fields'));
+    const [leftButton, rightButton] = this.paginationButtons;
+    leftButton.classList.add('pagination-button', 'left');
+    rightButton.classList.add('pagination-button', 'right');
+    this.navigationBar.classList.add('navigation-bar');
+    this.closeButton.classList.add('close-button');
   }
   createImagesFields() {
     let output = [];
