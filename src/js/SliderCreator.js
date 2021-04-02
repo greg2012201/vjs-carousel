@@ -39,6 +39,7 @@ export class SliderCreator {
     this.navigationBar.classList.add('navigation-bar');
     this.closeButton.classList.add('close-button');
   }
+
   createImagesFields() {
     let output = [];
 

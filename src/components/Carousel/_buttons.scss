@@ -1,0 +1,59 @@
+.left, .right, .close-button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.left, .right{
+   
+    grid-row:2/3 ;
+    transition: .3s;
+    
+}
+.left {
+    &::after {
+        content:'<<';
+        font-size: 60px;
+        color: gray;
+        transition: .3s;
+
+    }
+    &:hover{
+        background-color: rgba(0,0,0,0.1);
+        &::after{
+            color:white
+        }
+
+    }
+    
+  
+    grid-column: 1/2;
+}
+.right {
+    &::after {
+        content:'>>';
+        font-size: 60px;
+        color: gray;
+        transition: .3s;
+
+    }
+    &:hover{
+        background-color: rgba(0,0,0,0.1);
+        &::after{
+            color:white
+        }
+
+    }
+
+    grid-column: 3/4;
+}
+.close-button {
+    grid-row:1;
+    grid-column: 3/4;
+  
+    &::after{
+        content :'X';
+        font-size: 40px;
+        color:gray;
+    }
+ 
+}
